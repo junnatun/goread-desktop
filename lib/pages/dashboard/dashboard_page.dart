@@ -39,7 +39,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           style: heading1BlackTextStyle,
                         ),
                         Text(
-                          'Every sunrise gives you a new opportunity and hope! Good job, do your best today!',
+                          'Books don’t offer real escape, but they can stop a mind scratching itself raw.',
                           style: heading4RegulerTextStyle,
                         ),
                       ],
@@ -50,13 +50,13 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             OverviewCard(
-                              title: 'Total\nPenyewaan',
-                              value: '22 Sewa',
+                              title: 'Total\nPeminjaman',
+                              value: '22 Peminjaman',
                               iconSrc: 'assets/icons/icon_rent_dark.png',
                             ),
                             OverviewCard(
-                              title: 'Total\nPendapatan',
-                              value: 'Rp2.200.000,-',
+                              title: 'Buku\nTerfavorit',
+                              value: 'Hujan Bulan Juni',
                               iconSrc: 'assets/icons/icon_wallet_dark.png',
                             ),
                           ],
@@ -68,8 +68,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             OverviewCard(
-                              title: 'Total\nKatalog',
-                              value: '110 Produk',
+                              title: 'Total\nBuku',
+                              value: '110 Buku',
                               iconSrc: 'assets/icons/icon_catalogue_dark.png',
                             ),
                             OverviewCard(
@@ -93,7 +93,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   right: 24.h,
                 ),
                 decoration: BoxDecoration(
-                  color: purpleLightColor.withOpacity(0.5),
+                  color: orangeLightColor.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(30.r),
                 ),
                 child: Column(
@@ -103,7 +103,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       width: double.infinity,
                       height: 240.h,
                       decoration: BoxDecoration(
-                        color: purpleColor,
+                        color: orangeColor,
                         borderRadius: BorderRadius.circular(30.r),
                       ),
                     ),

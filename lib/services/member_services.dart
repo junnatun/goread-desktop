@@ -21,16 +21,16 @@ abstract class MemberServices {
 
 // NOTE: untuk method post addUser
   static Future<Map?> addUser(
-    String email,
-    String passwd,
+    String username,
+    String pass,
   ) async {
     try {
       var response = await Dio().post(
         '$baseAPIUrl/users',
         options: Options(contentType: Headers.formUrlEncodedContentType),
         data: {
-          'email': email,
-          'passwd': passwd,
+          'username': username,
+          'pass': pass,
         },
       );
 
@@ -65,9 +65,9 @@ abstract class MemberServices {
           'nama': nama,
           'jenis_kelamin': jk,
           'tgl_lahir': tglLahir,
-          'telp': telp,
-          'pekerjaan': pekerjaan,
+          'profesi': pekerjaan,
           'alamat': alamat,
+          'telp': telp,
         },
       );
 
@@ -91,6 +91,7 @@ abstract class MemberServices {
       if (response.statusCode == 200) {
         if (response.data['status'] == 1) {
           return {
+            // Key : Value
             'message': response.data['message'],
           };
         } else {
@@ -122,7 +123,7 @@ abstract class MemberServices {
           'jenis_kelamin': jk,
           'tgl_lahir': tglLahir,
           'telp': telp,
-          'pekerjaan': pekerjaan,
+          'profesi': pekerjaan,
           'alamat': alamat,
         },
       );

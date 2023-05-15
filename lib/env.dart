@@ -1,1 +1,1 @@
-const String baseAPIUrl = "http://localhost:8080/carent-app/api";
+const String baseAPIUrl = "http://localhost/goread-app/api";

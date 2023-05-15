@@ -28,7 +28,7 @@ class CustomModal {
           height: height,
           padding: EdgeInsets.all(50.h),
           decoration: BoxDecoration(
-            color: purpleLightColor,
+            color: orangeLightColor,
             borderRadius: BorderRadius.circular(
               50.r,
             ),

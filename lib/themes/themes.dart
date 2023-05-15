@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color purpleColor = const Color(0xff7262BE);
-Color purpleLightColor = const Color(0xffD7D6F4);
+Color orangeColor = const Color(0xffF65D4E);
+Color orangeLightColor = const Color(0xffFFE4E5);
 Color purpleDarkColor = const Color(0xff312A4F);
 Color pinkColor = const Color(0xffEFA9BB);
 Color whiteColor = const Color(0xffFFFFFF);

@@ -19,7 +19,7 @@ class OverviewCard extends StatelessWidget {
       height: 250.h,
       padding: EdgeInsets.all(24.h),
       decoration: BoxDecoration(
-        color: purpleColor,
+        color: orangeColor,
         borderRadius: BorderRadius.circular(30.r),
       ),
       child: Column(

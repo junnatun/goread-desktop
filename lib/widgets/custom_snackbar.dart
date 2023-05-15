@@ -18,7 +18,7 @@ class CustomSnackbar {
   ) {
     Get.snackbar(title, message,
         snackPosition: SnackPosition.TOP,
-        backgroundColor: purpleColor.withOpacity(0.5),
+        backgroundColor: orangeColor.withOpacity(0.5),
         colorText: whiteColor,
         maxWidth: 300.h,
         margin: EdgeInsets.only(top: 24.h),

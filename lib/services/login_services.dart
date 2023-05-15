@@ -5,17 +5,17 @@ import 'package:dio/dio.dart';
 abstract class LoginServices {
   // NOTE: get user to login
   static Future<ActiveUser?> login(
-    String email,
-    String passwd,
+    String username,
+    String pass,
   ) async {
     try {
       var response =
-          await Dio().get('$baseAPIUrl/login?email=$email&passwd=$passwd');
+          await Dio().get('$baseAPIUrl/login?username=$username&pass=$pass');
       if (response.statusCode == 200) {
         if (response.data['status'] == 1) {
           return ActiveUser(
             idUser: response.data['data'][0]['id_user'],
-            email: response.data['data'][0]['email'],
+            username: response.data['data'][0]['username'],
             role: response.data['data'][0]['role'],
           );
         } else {

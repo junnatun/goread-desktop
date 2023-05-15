@@ -19,7 +19,7 @@ class CustomNavbar extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.all(24.h),
       decoration: BoxDecoration(
-        color: purpleLightColor,
+        color: orangeLightColor,
         borderRadius: BorderRadius.circular(30.r),
       ),
       child: Column(
@@ -47,7 +47,7 @@ class CustomNavbar extends StatelessWidget {
               ),
               CustomNavbarButton(
                 index: 1,
-                title: 'Rents',
+                title: 'Borrows',
                 routeName: '/rentsPage',
                 iconLight: 'assets/icons/icon_rent_white.png',
                 iconDark: 'assets/icons/icon_rent_dark.png',
@@ -61,7 +61,7 @@ class CustomNavbar extends StatelessWidget {
               ),
               CustomNavbarButton(
                 index: 3,
-                title: 'Catalogue',
+                title: 'Books',
                 routeName: '/cataloguePage',
                 iconLight: 'assets/icons/icon_catalogue_white.png',
                 iconDark: 'assets/icons/icon_catalogue_dark.png',
@@ -84,7 +84,7 @@ class CustomNavbar extends StatelessWidget {
                 padding: EdgeInsets.all(5.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100.r),
-                  color: purpleColor,
+                  color: orangeColor,
                 ),
                 child: Container(
                   width: 50.h,

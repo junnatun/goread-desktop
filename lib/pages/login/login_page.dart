@@ -19,21 +19,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //NOTE: Textfields Controllers
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  String inputEmail = '', inputPassword = '';
+  String inputUsername = '', inputPassword = '';
   ActiveUser _user = ActiveUser(
     idUser: '',
-    email: '',
+    username: '',
     role: '',
   );
 
   @override
   void initState() {
-    emailController.addListener(() {
+    usernameController.addListener(() {
       setState(() {
-        inputEmail = emailController.value.text;
+        inputUsername = usernameController.value.text;
       });
     });
     passwordController.addListener(() {
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.all(50.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.r),
-                  color: purpleLightColor,
+                  color: orangeLightColor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,31 +82,31 @@ class _LoginPageState extends State<LoginPage> {
                       height: 16.h,
                     ),
                     Text(
-                      'Heyo, kawan Carent. Masuk dan jelajahi surganya sewa kamera.',
+                      'Hai, sahabat GoRead! Masuk dan baca buku favoritmu.',
                       style: heading4RegulerTextStyle,
                     ),
                     SizedBox(
-                      height: 16.h,
+                      height: 30.h,
                     ),
                     CustomTextField(
-                      title: 'Email',
-                      hintText: 'Your email..',
-                      controller: emailController,
+                      title: 'Username',
+                      hintText: 'Username...',
+                      controller: usernameController,
                     ),
                     CustomTextField(
                       title: 'Password',
-                      hintText: 'Your password..',
+                      hintText: 'Password...',
                       controller: passwordController,
                       isPass: true,
                     ),
                     SizedBox(
-                      height: 16.h,
+                      height: 30.h,
                     ),
                     CustomButton(
                       title: 'Sign In',
                       onTap: () async {
                         ActiveUser? result = await LoginServices.login(
-                            inputEmail, inputPassword);
+                            inputUsername, inputPassword);
                         if (result != null) {
                           setState(() {
                             _user = result;

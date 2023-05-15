@@ -36,7 +36,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                 height: 60.h,
                 margin: EdgeInsets.only(bottom: 24.h),
                 decoration: BoxDecoration(
-                  color: purpleColor,
+                  color: orangeColor,
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Row(
@@ -46,7 +46,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                       width: 60.h,
                       height: 60.h,
                       decoration: BoxDecoration(
-                        color: const Color(0xff9988E7),
+                        color: const Color(0xffF27D71),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Row(
@@ -124,7 +124,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                                 child: Text(
                                   widget.title,
                                   style: heading3BoldTextStyle.copyWith(
-                                    color: purpleColor,
+                                    color: orangeColor,
                                   ),
                                 ),
                               ),

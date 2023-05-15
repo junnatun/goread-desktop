@@ -33,7 +33,7 @@ class BasicLayout extends StatelessWidget {
                   height: double.infinity,
                   padding: EdgeInsets.all(24.h),
                   decoration: BoxDecoration(
-                    color: purpleLightColor.withOpacity(0.3),
+                    color: orangeLightColor.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(30.r),
                   ),
                   child: child,
@@ -48,7 +48,7 @@ class BasicLayout extends StatelessWidget {
                   child: SizedBox(
                       width: 150.h,
                       child: Material(
-                        color: purpleColor,
+                        color: orangeColor,
                         borderRadius: BorderRadius.circular(100.r),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(100.r),
