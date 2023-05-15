@@ -11,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:group_radio_button/group_radio_button.dart';
+import 'package:textfield_datepicker/textfield_datepicker.dart';
+import 'package:intl/intl.dart';
 
 class MembersPage extends StatefulWidget {
   const MembersPage({super.key});
@@ -167,10 +169,59 @@ class _MembersPageState extends State<MembersPage> {
                             hintText: 'Pekerjaan member..',
                             controller: pekerjaanController,
                           ),
-                          CustomTextField(
-                            title: 'Tanggal Lahir',
-                            hintText: 'Tanggal Lahir member..',
-                            controller: tglLahirController,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tanggal Lahir",
+                                style: heading3MediumTextStyle,
+                              ),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: TextfieldDatePicker(
+                                  cupertinoDatePickerBackgroundColor:
+                                      Colors.white,
+                                  cupertinoDatePickerMaximumDate:
+                                      DateTime(2024),
+                                  cupertinoDatePickerMaximumYear:
+                                      DateTime.now().year,
+                                  cupertinoDatePickerMinimumYear: 1980,
+                                  cupertinoDatePickerMinimumDate:
+                                      DateTime(1990),
+                                  cupertinoDateInitialDateTime: DateTime.now(),
+                                  materialDatePickerFirstDate: DateTime(1980),
+                                  materialDatePickerInitialDate: DateTime.now(),
+                                  materialDatePickerLastDate: DateTime(2024),
+                                  preferredDateFormat: DateFormat('yyyy-MM-dd'),
+                                  textfieldDatePickerController:
+                                      tglLahirController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle:
+                                        heading4RegulerTextStyle.copyWith(
+                                      color: purpleDarkColor.withOpacity(0.8),
+                                    ),
+                                    hintText: 'Pilih tanggal..',
+                                  ),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xff312A4F),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                            ],
                           ),
                           CustomTextField(
                             title: 'Alamat',
@@ -247,10 +298,10 @@ class _MembersPageState extends State<MembersPage> {
                     label: Text('PEKERJAAN'),
                   ),
                   DataColumn(
-                    label: Text('TELEPON'),
+                    label: Text('ALAMAT'),
                   ),
                   DataColumn(
-                    label: Text('ALAMAT'),
+                    label: Text('TELEPON'),
                   ),
                   DataColumn(
                     label: Text('ACTION'),
@@ -409,12 +460,84 @@ class _MembersPageState extends State<MembersPage> {
                                                     controller:
                                                         pekerjaanController,
                                                   ),
-                                                  CustomTextField(
-                                                    title: 'Tanggal Lahir',
-                                                    hintText:
-                                                        'Tanggal Lahir member..',
-                                                    controller:
-                                                        tglLahirController,
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Tanggal Lahir",
+                                                        style:
+                                                            heading3MediumTextStyle,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8.h,
+                                                      ),
+                                                      Container(
+                                                        width: double.infinity,
+                                                        height: 40.h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: whiteColor,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.r),
+                                                        ),
+                                                        child:
+                                                            TextfieldDatePicker(
+                                                          cupertinoDatePickerBackgroundColor:
+                                                              Colors.white,
+                                                          cupertinoDatePickerMaximumDate:
+                                                              DateTime(2024),
+                                                          cupertinoDatePickerMaximumYear:
+                                                              DateTime.now()
+                                                                  .year,
+                                                          cupertinoDatePickerMinimumYear:
+                                                              1980,
+                                                          cupertinoDatePickerMinimumDate:
+                                                              DateTime(1990),
+                                                          cupertinoDateInitialDateTime:
+                                                              DateTime.now(),
+                                                          materialDatePickerFirstDate:
+                                                              DateTime(1980),
+                                                          materialDatePickerInitialDate:
+                                                              DateTime.now(),
+                                                          materialDatePickerLastDate:
+                                                              DateTime(2024),
+                                                          preferredDateFormat:
+                                                              DateFormat(
+                                                                  'yyyy-MM-dd'),
+                                                          textfieldDatePickerController:
+                                                              tglLahirController,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            border: InputBorder
+                                                                .none,
+                                                            hintStyle:
+                                                                heading4RegulerTextStyle
+                                                                    .copyWith(
+                                                              color: purpleDarkColor
+                                                                  .withOpacity(
+                                                                      0.8),
+                                                            ),
+                                                            hintText:
+                                                                'Pilih tanggal..',
+                                                          ),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: Color(
+                                                                0xff312A4F),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 16.h,
+                                                      ),
+                                                    ],
                                                   ),
                                                   CustomTextField(
                                                     title: 'Alamat',
