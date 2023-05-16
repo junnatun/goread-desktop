@@ -62,7 +62,7 @@ class CustomNavbar extends StatelessWidget {
               CustomNavbarButton(
                 index: 3,
                 title: 'Books',
-                routeName: '/cataloguePage',
+                routeName: '/booksPage',
                 iconLight: 'assets/icons/icon_catalogue_white.png',
                 iconDark: 'assets/icons/icon_catalogue_dark.png',
               ),
