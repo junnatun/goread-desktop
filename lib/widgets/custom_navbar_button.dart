@@ -37,7 +37,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                 margin: EdgeInsets.only(bottom: 24.h),
                 decoration: BoxDecoration(
                   color: orangeColor,
-                  borderRadius: BorderRadius.circular(16.r),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +47,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                       height: 60.h,
                       decoration: BoxDecoration(
                         color: const Color(0xffF27D71),
-                        borderRadius: BorderRadius.circular(16.r),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,9 +79,9 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                 margin: EdgeInsets.only(bottom: 24.h),
                 child: Material(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(16.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   child: InkWell(
-                      borderRadius: BorderRadius.circular(16.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       splashColor: pinkColor,
                       highlightColor: Colors.transparent,
                       onTap: () {
@@ -93,7 +93,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                         height: 60.h,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(16.r),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,7 +103,7 @@ class _CustomNavbarButtonState extends State<CustomNavbarButton> {
                               height: 60.h,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(16.r),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

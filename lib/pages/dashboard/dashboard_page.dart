@@ -94,7 +94,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 decoration: BoxDecoration(
                   color: orangeLightColor.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(30.r),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +104,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       height: 240.h,
                       decoration: BoxDecoration(
                         color: orangeColor,
-                        borderRadius: BorderRadius.circular(30.r),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     SizedBox(

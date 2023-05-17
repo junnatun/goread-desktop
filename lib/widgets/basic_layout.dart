@@ -49,9 +49,9 @@ class BasicLayout extends StatelessWidget {
                       width: 150.h,
                       child: Material(
                         color: orangeColor,
-                        borderRadius: BorderRadius.circular(100.r),
+                        borderRadius: BorderRadius.circular(10.r),
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(100.r),
+                          borderRadius: BorderRadius.circular(10.r),
                           splashColor: pinkColor,
                           highlightColor: Colors.transparent,
                           onTap: buttonOnTap,
@@ -59,7 +59,7 @@ class BasicLayout extends StatelessWidget {
                             width: double.infinity,
                             height: 50.h,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100.r),
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

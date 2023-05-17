@@ -9,10 +9,11 @@ class CustomTextField extends StatefulWidget {
     required this.hintText,
     required this.controller,
     this.isPass = false,
+    this.withMargin = true,
   }) : super(key: key);
 
   final String title, hintText;
-  final bool isPass;
+  final bool isPass, withMargin;
   final TextEditingController controller;
 
   @override
@@ -23,7 +24,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
+      margin: EdgeInsets.only(bottom: widget.withMargin ? 16.h : 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

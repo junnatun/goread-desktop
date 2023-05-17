@@ -16,9 +16,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: orangeColor,
-      borderRadius: BorderRadius.circular(100.r),
+      borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
-        borderRadius: BorderRadius.circular(100.r),
+        borderRadius: BorderRadius.circular(10.r),
         splashColor: pinkColor,
         highlightColor: Colors.transparent,
         onTap: onTap,
@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100.r),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           child: Center(
             child: Text(

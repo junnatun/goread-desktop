@@ -19,6 +19,25 @@ abstract class MemberServices {
     return null;
   }
 
+// NOTE: get member
+  static Future<List?> getMember(
+    String id,
+  ) async {
+    try {
+      var response = await Dio().get('$baseAPIUrl/members?id_user=$id');
+      if (response.statusCode == 200) {
+        if (response.data['status'] == 1) {
+          return response.data['data'];
+        } else {
+          return null;
+        }
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+    return null;
+  }
+
 // NOTE: untuk method post addUser
   static Future<Map?> addUser(
     String username,

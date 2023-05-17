@@ -30,7 +30,7 @@ class CustomModal {
           decoration: BoxDecoration(
             color: orangeLightColor,
             borderRadius: BorderRadius.circular(
-              50.r,
+              10.r,
             ),
           ),
           child: Material(

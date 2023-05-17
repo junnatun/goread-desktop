@@ -20,7 +20,7 @@ class OverviewCard extends StatelessWidget {
       padding: EdgeInsets.all(24.h),
       decoration: BoxDecoration(
         color: orangeColor,
-        borderRadius: BorderRadius.circular(30.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +34,7 @@ class OverviewCard extends StatelessWidget {
                 height: 50.h,
                 padding: EdgeInsets.all(10.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   color: whiteColor,
                 ),
                 child: SizedBox(

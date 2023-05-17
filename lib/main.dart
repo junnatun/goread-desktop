@@ -1,4 +1,5 @@
 import 'package:carent_app/pages/books/books_page.dart';
+import 'package:carent_app/pages/borrows/borrows_page.dart';
 import 'package:carent_app/pages/dashboard/dashboard_page.dart';
 import 'package:carent_app/pages/login/login_page.dart';
 import 'package:carent_app/pages/members/members_page.dart';
@@ -63,6 +64,15 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/booksPage',
             page: () => const BooksPage(),
+            transition: Transition.noTransition,
+            showCupertinoParallax: false,
+            transitionDuration: const Duration(
+              milliseconds: 800,
+            ),
+          ),
+          GetPage(
+            name: '/borrowsPage',
+            page: () => const BorrowsPage(),
             transition: Transition.noTransition,
             showCupertinoParallax: false,
             transitionDuration: const Duration(

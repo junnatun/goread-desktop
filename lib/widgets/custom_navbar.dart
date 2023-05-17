@@ -20,7 +20,7 @@ class CustomNavbar extends StatelessWidget {
       padding: EdgeInsets.all(24.h),
       decoration: BoxDecoration(
         color: orangeLightColor,
-        borderRadius: BorderRadius.circular(30.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,7 +48,7 @@ class CustomNavbar extends StatelessWidget {
               CustomNavbarButton(
                 index: 1,
                 title: 'Borrows',
-                routeName: '/rentsPage',
+                routeName: '/borrowsPage',
                 iconLight: 'assets/icons/icon_rent_white.png',
                 iconDark: 'assets/icons/icon_rent_dark.png',
               ),
@@ -81,14 +81,14 @@ class CustomNavbar extends StatelessWidget {
               Container(
                 width: 60.h,
                 height: 60.h,
-                padding: EdgeInsets.all(5.h),
+                padding: EdgeInsets.all(3.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100.r),
                   color: orangeColor,
                 ),
                 child: Container(
-                  width: 50.h,
-                  height: 50.h,
+                  width: 54.h,
+                  height: 54.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100.r),
                     // color: purpleColor,

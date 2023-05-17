@@ -280,6 +280,7 @@ class _MembersPageState extends State<MembersPage> {
                 dataRowHeight: 100.h,
                 columns: const [
                   DataColumn2(
+                    fixedWidth: 70,
                     label: Text('ID'),
                   ),
                   DataColumn(
@@ -288,8 +289,9 @@ class _MembersPageState extends State<MembersPage> {
                   DataColumn(
                     label: Text('NAMA'),
                   ),
-                  DataColumn(
-                    label: Text('GENDER'),
+                  DataColumn2(
+                    fixedWidth: 50,
+                    label: Text('JK'),
                   ),
                   DataColumn(
                     label: Text('TGL LAHIR'),
@@ -303,7 +305,8 @@ class _MembersPageState extends State<MembersPage> {
                   DataColumn(
                     label: Text('TELEPON'),
                   ),
-                  DataColumn(
+                  DataColumn2(
+                    fixedWidth: 86,
                     label: Text('ACTION'),
                   ),
                 ],
