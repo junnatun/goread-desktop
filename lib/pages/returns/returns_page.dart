@@ -3,6 +3,7 @@ import 'package:carent_app/services/borrow_detail_services.dart';
 import 'package:carent_app/services/borrow_returns_services.dart';
 import 'package:carent_app/services/borrow_services.dart';
 import 'package:carent_app/services/member_services.dart';
+import 'package:carent_app/services/rupiah_format.dart';
 import 'package:carent_app/themes/themes.dart';
 import 'package:carent_app/widgets/basic_layout.dart';
 import 'package:carent_app/widgets/custom_button.dart';
@@ -70,6 +71,7 @@ class _ReturnsPageState extends State<ReturnsPage> {
 
   @override
   Widget build(BuildContext context) {
+    BorrowContoller borrowController = Get.put(BorrowContoller());
     return Scaffold(
       body: BasicLayout(
         withButton: true,
@@ -77,89 +79,232 @@ class _ReturnsPageState extends State<ReturnsPage> {
           //NOTE: Untuk menambah data <button pojok kanan bawah>
           CustomModal.show(
             'Tambah Pengembalian', //title
-            500.h, //width
+            800.h, //width
             480.h, //height
             //child
             Column(
               children: [
-                CustomTextField(
-                  title: 'ID Peminjaman',
-                  hintText: 'ID peminjaman..',
-                  controller: idPeminjamanController,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Tanggal Kembali",
-                      style: heading3MediumTextStyle,
-                    ),
                     SizedBox(
-                      height: 8.h,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                      child: TextfieldDatePicker(
-                        cupertinoDatePickerBackgroundColor: Colors.white,
-                        cupertinoDatePickerMaximumDate: DateTime(2024),
-                        cupertinoDatePickerMaximumYear: DateTime.now().year,
-                        cupertinoDatePickerMinimumYear: 1980,
-                        cupertinoDatePickerMinimumDate: DateTime(1990),
-                        cupertinoDateInitialDateTime: DateTime.now(),
-                        materialDatePickerFirstDate: DateTime(1980),
-                        materialDatePickerInitialDate: DateTime.now(),
-                        materialDatePickerLastDate: DateTime(2024),
-                        preferredDateFormat: DateFormat('yyyy-MM-dd'),
-                        textfieldDatePickerController: tglKembaliController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: heading4RegulerTextStyle.copyWith(
-                            color: purpleDarkColor.withOpacity(0.8),
+                      width: 325.h,
+                      child: Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                width: 275.h,
+                                child: CustomTextField(
+                                  title: 'ID Peminjaman',
+                                  hintText: 'ID Peminjaman..',
+                                  withMargin: false,
+                                  controller: idPeminjamanController,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10.h,
+                              ),
+                              Material(
+                                color: orangeColor,
+                                borderRadius: BorderRadius.circular(5.r),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                  splashColor: pinkColor,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    var getBorrowResult =
+                                        await BorrowServices.getBorrow(
+                                            inputIdPeminjaman);
+
+                                    //NOTE: add value to controller
+                                    borrowController.namaMember.value =
+                                        getBorrowResult![0]['nama'];
+                                    borrowController.tglPinjam.value =
+                                        getBorrowResult![0]['tgl_pinjam'];
+                                  },
+                                  child: Container(
+                                    width: 40.h,
+                                    height: 40.h,
+                                    padding: EdgeInsets.all(5.h),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                    child: const Center(
+                                      child: Image(
+                                        image: AssetImage(
+                                            'assets/icons/icon_search.png'),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          hintText: 'Pilih tanggal..',
-                        ),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff312A4F),
-                        ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          Obx(
+                            () => Column(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Nama Member',
+                                      style: heading3MediumTextStyle,
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 40.h,
+                                      padding: EdgeInsets.all(10.h),
+                                      decoration: BoxDecoration(
+                                        color: whiteColor,
+                                        borderRadius:
+                                            BorderRadius.circular(10.r),
+                                      ),
+                                      child: Text(
+                                        borrowController.namaMember.value,
+                                        style: heading3RegulerTextStyle,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 75.h,
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
-                      height: 16.h,
+                      width: 325.h,
+                      child: Column(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tanggal Pinjam',
+                                style: heading3MediumTextStyle,
+                              ),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 40.h,
+                                padding: EdgeInsets.all(10.h),
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Text(
+                                  borrowController.tglPinjam.value,
+                                  style: heading3RegulerTextStyle,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tanggal Kembali",
+                                style: heading3MediumTextStyle,
+                              ),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: TextfieldDatePicker(
+                                  cupertinoDatePickerBackgroundColor:
+                                      Colors.white,
+                                  cupertinoDatePickerMaximumDate:
+                                      DateTime(2024),
+                                  cupertinoDatePickerMaximumYear:
+                                      DateTime.now().year,
+                                  cupertinoDatePickerMinimumYear: 1980,
+                                  cupertinoDatePickerMinimumDate:
+                                      DateTime(1990),
+                                  cupertinoDateInitialDateTime: DateTime.now(),
+                                  materialDatePickerFirstDate: DateTime(1980),
+                                  materialDatePickerInitialDate: DateTime.now(),
+                                  materialDatePickerLastDate: DateTime(2024),
+                                  preferredDateFormat: DateFormat('yyyy-MM-dd'),
+                                  textfieldDatePickerController:
+                                      tglKembaliController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle:
+                                        heading4RegulerTextStyle.copyWith(
+                                      color: purpleDarkColor.withOpacity(0.8),
+                                    ),
+                                    hintText: 'Pilih tanggal..',
+                                  ),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xff312A4F),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                            ],
+                          ),
+                          CustomTextField(
+                            title: 'Denda',
+                            hintText: 'Denda..',
+                            controller: dendaController,
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          CustomButton(
+                            title: 'Simpan',
+                            onTap: () async {
+                              var addBorrowReturnResult =
+                                  await BorrowReturnServices.addBorrowReturn(
+                                      inputIdPeminjaman,
+                                      inputTglKembali,
+                                      inputDenda);
+
+                              var updateBorrowResult =
+                                  await BorrowServices.editBorrow(
+                                      inputIdPeminjaman, 'done');
+
+                              setState(() {
+                                Get.toNamed('/dashboardPage');
+                                Get.toNamed('/returnsPage');
+                                CustomSnackbar.show(
+                                    'Yeay', addBorrowReturnResult!['message']);
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-                CustomTextField(
-                  title: 'Denda',
-                  hintText: 'Denda..',
-                  controller: dendaController,
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                CustomButton(
-                  title: 'Simpan',
-                  onTap: () async {
-                    var addBorrowReturnResult =
-                        await BorrowReturnServices.addBorrowReturn(
-                            inputIdPeminjaman, inputTglKembali, inputDenda);
-
-                    var updateBorrowResult = await BorrowServices.editBorrow(
-                        inputIdPeminjaman, 'done');
-
-                    setState(() {
-                      Get.toNamed('/dashboardPage');
-                      Get.toNamed('/returnsPage');
-                      CustomSnackbar.show(
-                          'Yeay', addBorrowReturnResult!['message']);
-                    });
-                  },
                 ),
               ],
             ),
@@ -240,21 +385,165 @@ class _ReturnsPageState extends State<ReturnsPage> {
                                 highlightColor: Colors.transparent,
                                 onTap: () {
                                   CustomModal.show(
-                                    'Detail Pengembalian ${data['id_peminjaman']}', //NOTE: title
-                                    500.h, //NOTE: width
-                                    600.h, //NOTE: height
+                                      'Detail Pengembalian ${data['id_peminjaman']}', //NOTE: title
+                                      500.h, //NOTE: width
+                                      600.h, //NOTE: height
 
-                                    //NOTE: child
-                                    Column(
-                                      children: [
-                                        Text(
-                                          "${data['sinopsis']}",
-                                          style: heading4RegulerTextStyle,
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                      //NOTE: child
+                                      Column(
+                                        children: [
+                                          Container(
+                                            width: 400.h,
+                                            height: 350.h,
+                                            child:
+                                                FutureBuilder<List<dynamic>?>(
+                                              future: BorrowDetailsServices
+                                                  .getBorrowDetail(
+                                                      data['id_peminjaman']),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  return DataTable2(
+                                                    columnSpacing: 12,
+                                                    horizontalMargin: 12,
+                                                    minWidth: 600,
+                                                    dataTextStyle:
+                                                        heading4RegulerTextStyle
+                                                            .copyWith(
+                                                                fontSize: 14),
+                                                    headingTextStyle:
+                                                        heading4BoldTextStyle
+                                                            .copyWith(
+                                                                fontSize: 14),
+                                                    dataRowHeight: 80.h,
+                                                    columns: const [
+                                                      DataColumn2(
+                                                        fixedWidth: 200,
+                                                        label:
+                                                            Text('JUDUL BUKU'),
+                                                      ),
+                                                      DataColumn2(
+                                                        fixedWidth: 170,
+                                                        label: Text('PENULIS'),
+                                                      ),
+                                                      DataColumn2(
+                                                        fixedWidth: 70,
+                                                        label: Text('JUMLAH'),
+                                                      ),
+                                                    ],
+                                                    rows: List.generate(
+                                                      snapshot.data!.length,
+                                                      (index) {
+                                                        var data = snapshot
+                                                            .data![index];
+                                                        return DataRow(cells: [
+                                                          DataCell(
+                                                            Text(data[
+                                                                'judul_buku']),
+                                                          ),
+                                                          DataCell(
+                                                            Text(data[
+                                                                'penulis']),
+                                                          ),
+                                                          DataCell(
+                                                            Text(data['jumlah']
+                                                                .toString()),
+                                                          ),
+                                                        ]);
+                                                      },
+                                                    ).toList(),
+                                                    showBottomBorder: true,
+                                                  );
+                                                } else if (snapshot.hasError) {
+                                                  return Text(snapshot.error
+                                                      .toString());
+                                                }
+                                                // By default show a loading spinner.
+                                                return Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                  color: orangeColor,
+                                                ));
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 400.h,
+                                            height: 100.h,
+                                            // color: orangeColor,
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Tanggal Pinjam',
+                                                      style:
+                                                          heading3RegulerTextStyle,
+                                                    ),
+                                                    Text(
+                                                      '${data['tgl_pinjam']}',
+                                                      style:
+                                                          heading3BoldTextStyle,
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 16.h,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Tanggal Kembali',
+                                                      style:
+                                                          heading3RegulerTextStyle,
+                                                    ),
+                                                    Text(
+                                                      '${data['tgl_kembali']}',
+                                                      style:
+                                                          heading3BoldTextStyle,
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 16.h,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Denda',
+                                                      style:
+                                                          heading3RegulerTextStyle,
+                                                    ),
+                                                    Text(
+                                                      RupiahFormat.converToIDR(
+                                                        int.parse(
+                                                            data['denda']),
+                                                        2,
+                                                      ),
+                                                      style:
+                                                          heading3BoldTextStyle,
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ));
                                 },
                                 child: Container(
                                   width: 30.h,
@@ -274,72 +563,6 @@ class _ReturnsPageState extends State<ReturnsPage> {
                             ),
                             SizedBox(
                               width: 5.h,
-                            ),
-                            // NOTE: Button Edit
-                            Material(
-                              color: orangeColor,
-                              borderRadius: BorderRadius.circular(5.r),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(5.r),
-                                splashColor: pinkColor,
-                                highlightColor: Colors.transparent,
-                                onTap: () {
-                                  // NOTE: for default value
-                                  // idUserController.text = data['username'];
-                                  // status.text = data['nama'];
-                                  // jkController.text = data['jenis_kelamin'];
-                                  // tglLahirController.text = data['tgl_lahir'];
-                                  // telpController.text = data['telp'];
-                                  // pekerjaanController.text = data['profesi'];
-                                  // alamatController.text = data['alamat'];
-
-                                  CustomModal.show(
-                                    "Edit Member ${data['id_user']}",
-                                    800.h,
-                                    460.h,
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: 325.h,
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 60.h,
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 325.h,
-                                              child: Column(
-                                                children: [],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  width: 30.h,
-                                  height: 30.h,
-                                  padding: EdgeInsets.all(5.h),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5.r),
-                                  ),
-                                  child: const Center(
-                                    child: Image(
-                                      image: AssetImage(
-                                          'assets/icons/icon_edit.png'),
-                                    ),
-                                  ),
-                                ),
-                              ),
                             ),
                             SizedBox(
                               width: 5.h,

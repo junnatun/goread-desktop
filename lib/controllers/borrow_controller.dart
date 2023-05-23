@@ -4,4 +4,5 @@ class BorrowContoller extends GetxController {
   final namaMember = "Nama member..".obs;
   final telpMember = "Telepon member..".obs;
   final alamatMember = "Alamat member..".obs;
+  final tglPinjam = "Tanggal Pinjam..".obs;
 }

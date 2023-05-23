@@ -464,18 +464,19 @@ class _BorrowsPageState extends State<BorrowsPage> {
                                   await BorrowServices.addBorrow(
                                       inputIdUser, inputTglPinjam);
 
-                              var addBorrowDetailResult =
-                                  await BorrowDetailsServices.addBorrowDetail(
-                                      addBorrowResult!['id'],
-                                      inputIdBuku,
-                                      inputJumlah);
-
-                              setState(() {
-                                Get.toNamed('/dashboardPage');
-                                Get.toNamed('/borrowsPage');
-                                CustomSnackbar.show(
-                                    'Yeay', addBorrowResult['message']);
-                              });
+                              if (addBorrowResult != null) {
+                                var addBorrowDetailResult =
+                                    await BorrowDetailsServices.addBorrowDetail(
+                                        addBorrowResult!['id'],
+                                        inputIdBuku,
+                                        inputJumlah);
+                                setState(() {
+                                  Get.toNamed('/dashboardPage');
+                                  Get.toNamed('/borrowsPage');
+                                  CustomSnackbar.show(
+                                      'Yeay', addBorrowResult!['message']);
+                                });
+                              }
                             },
                           ),
                         ],

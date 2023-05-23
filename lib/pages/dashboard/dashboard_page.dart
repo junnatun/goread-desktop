@@ -1,3 +1,4 @@
+import 'package:carent_app/services/overview_services.dart';
 import 'package:carent_app/themes/themes.dart';
 import 'package:carent_app/widgets/custom_navbar.dart';
 import 'package:carent_app/widgets/overview_card.dart';
@@ -44,43 +45,66 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            OverviewCard(
-                              title: 'Total\nPeminjaman',
-                              value: '22 Peminjaman',
-                              iconSrc: 'assets/icons/icon_rent_dark.png',
+                    FutureBuilder<List<dynamic>?>(
+                        future: OverviewServices.getOverview(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OverviewCard(
+                                      title: 'Total\nPeminjaman',
+                                      value:
+                                          '${snapshot.data![0]['totalPeminjaman']} Peminjaman',
+                                      iconSrc:
+                                          'assets/icons/icon_rent_dark.png',
+                                    ),
+                                    OverviewCard(
+                                      title: 'Buku\nTerfavorit',
+                                      value:
+                                          '${snapshot.data![1]['judul_buku']}',
+                                      iconSrc:
+                                          'assets/icons/icon_wallet_dark.png',
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 24.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    OverviewCard(
+                                      title: 'Total\nBuku',
+                                      value:
+                                          '${snapshot.data![2]['totalBuku']} Buku',
+                                      iconSrc:
+                                          'assets/icons/icon_catalogue_dark.png',
+                                    ),
+                                    OverviewCard(
+                                      title: 'Total\nMember',
+                                      value:
+                                          '${snapshot.data![3]['totalMember']} Member',
+                                      iconSrc:
+                                          'assets/icons/icon_member_dark.png',
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text(snapshot.error.toString());
+                          }
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: orangeColor,
                             ),
-                            OverviewCard(
-                              title: 'Buku\nTerfavorit',
-                              value: 'Hujan Bulan Juni',
-                              iconSrc: 'assets/icons/icon_wallet_dark.png',
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            OverviewCard(
-                              title: 'Total\nBuku',
-                              value: '110 Buku',
-                              iconSrc: 'assets/icons/icon_catalogue_dark.png',
-                            ),
-                            OverviewCard(
-                              title: 'Total\nMember',
-                              value: '15 Member',
-                              iconSrc: 'assets/icons/icon_member_dark.png',
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          );
+                        })
                   ],
                 ),
               ),

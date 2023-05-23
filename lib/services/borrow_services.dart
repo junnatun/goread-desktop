@@ -19,6 +19,23 @@ abstract class BorrowServices {
     return null;
   }
 
+// NOTE: get borrow
+  static Future<List?> getBorrow(String id) async {
+    try {
+      var response = await Dio().get('$baseAPIUrl/borrows?id_peminjaman=$id');
+      if (response.statusCode == 200) {
+        if (response.data['status'] == 1) {
+          return response.data['data'];
+        } else {
+          return null;
+        }
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+    return null;
+  }
+
 // NOTE: untuk addBorrow
   static Future<Map?> addBorrow(
     String idUser,
